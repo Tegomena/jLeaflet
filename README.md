@@ -1,4 +1,4 @@
 # jLeaflet
-jLeaflet is Java mapper for the JavaScript library Leaflet.
+jLeaflet is a Java mapper for the JavaScript library Leaflet: http://leafletjs.com/
 
-This is the readme
+It allows you to easily create a Leaflet based map from within your Java applications.
