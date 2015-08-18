@@ -1,4 +1,4 @@
 # jLeaflet
-Java mapper for Leaflet
+jLeaflet is Java mapper for the JavaScript library Leaflet.
 
 This is the readme
