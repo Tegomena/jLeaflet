@@ -1,21 +1,35 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2015 Thomas Zastrow
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 package jleaflet;
 
+import LeafletObjects.LeafletObject;
+import LeafletObjects.Coordinates;
 import java.util.ArrayList;
 
 /**
  *
- * @author tom
+ * @author Thomas Zastrow
  */
 public class Map {
 
     private String title;
     private String leafletStylesheet;
-    private String leafletString;
+    private String leafletScript;
     private String kmlScript;
 
     private String mapDivStyle;
@@ -24,6 +38,7 @@ public class Map {
 
     private String mapId;
     private String accessToken;
+    private String mapStyle;
 
     private ArrayList<LeafletObject> objects;
 
@@ -35,7 +50,7 @@ public class Map {
             + "<script src=\"$kmlscript$\"></script>\n"
             + "</head>\n"
             + "<body>\n"
-            + "<div id=\"map\" style=\"height:100%;\"></div>\n"
+            + "<div id=\"map\" style=\"$mapstyle$\"></div>\n"
             + "<script>\n"
             + "var map = L.map('map').setView([$latitude$, $longitude$], $zoomlevel$);\n"
             + "  \n"
@@ -45,7 +60,7 @@ public class Map {
             + "    id: '$mapid$',\n"
             + "    accessToken: '$accesstoken$'\n"
             + "}).addTo(map);\n"
-            + "var marker = L.marker([48.25371, 11.64688]).addTo(map);\n"
+           
             + "$objects$\n"
             + "</script>\n"
             + "</body>\n"
@@ -54,6 +69,7 @@ public class Map {
     public Map() {
         this.objects = new ArrayList<LeafletObject>();
         this.title = "";
+        this.mapStyle = "";
     }
 
     public void addObject(LeafletObject lo) {
@@ -89,11 +105,11 @@ public class Map {
     }
 
     public String getLeafletString() {
-        return leafletString;
+        return leafletScript;
     }
 
     public void setLeafletString(String leafletString) {
-        this.leafletString = leafletString;
+        this.leafletScript = leafletString;
     }
 
     public String getKmlScript() {
@@ -119,6 +135,14 @@ public class Map {
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
+
+    public String getMapStyle() {
+        return mapStyle;
+    }
+
+    public void setMapStyle(String mapStyle) {
+        this.mapStyle = mapStyle;
+    }
     
     
 
@@ -130,11 +154,12 @@ public class Map {
             sb.append(lo.toString());
             sb.append("\n");
         }
-
+        
         this.template = this.template.replace("$objects$", sb.toString());
         this.template = this.template.replace("$title$", this.title);
+        this.template = this.template.replace("$mapstyle$", this.mapStyle);
         this.template = this.template.replace("$leafletstylesheet$", this.leafletStylesheet);
-        this.template = this.template.replace("$leafletString$", this.leafletString);
+        this.template = this.template.replace("$leafletString$", this.leafletScript);
         this.template = this.template.replace("$kmlscript$", this.kmlScript);
         this.template = this.template.replace("$latitude$", this.mapCenter.getLatitude().toString());
         this.template = this.template.replace("$longitude$", this.mapCenter.getLongitude().toString());
