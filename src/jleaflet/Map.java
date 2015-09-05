@@ -161,8 +161,13 @@ public class Map {
         this.template = this.template.replace("$leafletstylesheet$", this.leafletStylesheet);
         this.template = this.template.replace("$leafletString$", this.leafletScript);
         this.template = this.template.replace("$kmlscript$", this.kmlScript);
+        if(this.mapCenter != null){
         this.template = this.template.replace("$latitude$", this.mapCenter.getLatitude().toString());
         this.template = this.template.replace("$longitude$", this.mapCenter.getLongitude().toString());
+        } else {
+              this.template = this.template.replace("$latitude$", "0");
+        this.template = this.template.replace("$longitude$", "0"); 
+        }
         this.template = this.template.replace("$zoomlevel$", Integer.toString(this.zoomLevel));
 
         this.template = this.template.replace("$mapid$", this.mapId);
