@@ -40,6 +40,7 @@ public class BasicTutorial {
         m.setLeafletStylesheet("http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css");
         m.setKmlScript("http://www.thomas-zastrow.de/js/leaflet/KML.js");
         
+        
         m.setMapId("thomaszastrow.0561f39d");
         m.setAccessToken("pk.eyJ1IjoidGhvbWFzemFzdHJvdyIsImEiOiJjYzdiYzNiOGY4NTIwNjUxMDhmYzZkMDg0ZTYyYzlhOCJ9.uI9t241xeKYukX3EPOgKLw");
         

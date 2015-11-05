@@ -41,6 +41,7 @@ public class JLMap {
     private String mapStyle;
     
     private String tileLayer;
+    private String copyRight;
 
     private ArrayList<LeafletObject> objects;
 
@@ -57,7 +58,7 @@ public class JLMap {
             + "var map = L.map('map').setView([$latitude$, $longitude$], $zoomlevel$);\n"
             + "  \n"
             + "L.tileLayer('$tilelayer$', {\n"
-            + "    attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://mapbox.com\">Mapbox</a>',\n"
+            + "    attribution: '$copyright$',\n"
             + "    maxZoom: 18,\n"
             + "    id: '$mapid$',\n"
             + "    accessToken: '$accesstoken$'\n"
@@ -73,6 +74,7 @@ public class JLMap {
         this.title = "";
         this.mapStyle = "";
         this.tileLayer = "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}";
+        this.copyRight = "Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://mapbox.com\">Mapbox</a>";        
     }
 
     public void addObject(LeafletObject lo) {
@@ -90,8 +92,15 @@ public class JLMap {
     public void setTileLayer(String tileLayer) {
         this.tileLayer = tileLayer;
     }
-    
-    
+
+    public String getCopyRight() {
+        return copyRight;
+    }
+
+    public void setCopyRight(String copyRight) {
+        this.copyRight = copyRight;
+    }
+        
 
     public Coordinates getMapCenter() {
         return mapCenter;
@@ -171,6 +180,7 @@ public class JLMap {
         this.template = this.template.replace("$objects$", sb.toString());
         this.template = this.template.replace("$title$", this.title);
         this.template = this.template.replace("$tilelayer$", this.tileLayer);
+        this.template = this.template.replace("$copyright$", this.copyRight);
         this.template = this.template.replace("$mapstyle$", this.mapStyle);
         this.template = this.template.replace("$leafletstylesheet$", this.leafletStylesheet);
         this.template = this.template.replace("$leafletString$", this.leafletScript);
