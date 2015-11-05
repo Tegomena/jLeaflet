@@ -30,7 +30,7 @@ public class Polygon implements LeafletObject {
     private String popup;
 
     public Polygon() {
-        this.points = new ArrayList<>();
+        this.points = new ArrayList<Coordinates>();
         this.name = util.Functions.randomName();
 
     }

@@ -25,7 +25,7 @@ import LeafletObjects.KMLLayer;
  */
 public class KMLTutorial {
     public static void main (String[] args){
-        Map m = new Map();
+        JLMap m = new JLMap();
         m.setTitle("My title");
         m.setMapStyle("height:50%;");
         m.setLeafletString("http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js");
